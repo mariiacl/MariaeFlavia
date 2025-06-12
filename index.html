@@ -89,6 +89,29 @@
     .section {
       margin-top: 30px;
     }
+
+  .video-carousel {
+  width: 900px;
+  height: 500px;
+  margin: 2rem auto;
+  overflow: hidden;
+  border-radius: 20px;
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+  position: relative;
+}
+
+.video-carousel-inner {
+  display: flex;
+  transition: transform 0.5s ease-in-out;
+}
+
+.video-carousel video {
+  width: 900px;
+  height: 500px;
+  object-fit: cover;
+  flex-shrink: 0;
+  background: black;
+}
   </style>
 </head>
 <body>
@@ -109,6 +132,8 @@
         <img src="imagem6.JPEG" alt="Casal 6" />
         <img src="imagem7.JPEG" alt="Casal 7" />
         <img src="imagem8.JPEG" alt="Casal 8" />
+        <img src="imagem9.JPEG" alt="Casal 9" />
+        <img src="imagem10.JPEG" alt="Casal 10" />
       </div>
     </div>
 
@@ -129,6 +154,18 @@
       <h2>E contando.. 💖 </h2>
     </div>
   </div>
+
+  <div class="section">
+  <h2>Momentos em Vídeo 🎥</h2>
+  <div class="video-carousel">
+    <div class="video-carousel-inner" id="videoCarousel">
+      <video src="video1.mp4" controls></video>
+      <video src="video2.mp4" controls></video>
+      <video src="video3.mp4" controls></video>
+      <video src="video4.mp4" controls></video>
+    </div>
+  </div>
+</div>
 
   <script>
     // Carrossel automático
@@ -161,6 +198,18 @@
 
     setInterval(updateTimer, 1000);
     updateTimer();
+
+ // Carrossel de vídeos automático
+  let videoIndex = 0;
+  const videoCarousel = document.getElementById("videoCarousel");
+  const videoWidth = 900;
+  const totalVideos = videoCarousel.children.length;
+
+  setInterval(() => {
+    videoIndex = (videoIndex + 1) % totalVideos;
+    videoCarousel.style.transform = `translateX(-${videoIndex * videoWidth}px)`;
+  }, 8000); // tempo maior para dar tempo de assistir um pouco
+    
   </script>
 </body>
 </html>
