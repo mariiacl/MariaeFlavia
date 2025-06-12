@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Feliz Dia dos Namorados ❤️</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', sans-serif;
+      color: white;
+      background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);
+      overflow-x: hidden;
+    }
+
+    .stars {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      background: transparent url('https://raw.githubusercontent.com/lokesh-coder/night-sky-background/main/stars.png') repeat top center;
+      z-index: -1;
+      animation: moveStars 100s linear infinite;
+    }
+
+    @keyframes moveStars {
+      from { background-position: 0 0; }
+      to { background-position: -10000px 5000px; }
+    }
+
+    .container {
+      padding: 2rem;
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      color: #d6336c;
+      margin-bottom: 60px;
+    }
+
+    p {
+      font-size: 30px;
+      margin-bottom: 20px;
+    }
+
+    .carousel {
+      width: 900px;
+      height: 500px;
+      margin: 2rem auto;
+      position: relative;
+      overflow: hidden;
+      border-radius: 20px;
+      box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+    }
+
+    .carousel-images {
+      display: flex;
+      transition: transform 0.5s ease-in-out;
+    }
+
+    .carousel-images img {
+      width: 900px;
+      height: 500px;
+      object-fit: cover;
+      flex-shrink: 0;
+    }
+
+    .phrases {
+      margin-top: 3rem;
+      font-size: 1.5rem;
+      line-height: 2.2rem;
+    }
+
+    audio {
+      display: none;
+    }
+
+    #timer {
+      font-size: 60px;
+      font-weight: bold;
+      margin-top: 20px;
+      color: #6c757d;
+    }
+
+    .section {
+      margin-top: 30px;
+    }
+  </style>
+</head>
+<body>
+  <div class="stars"></div>
+  <div class="container">
+    <h1>Feliz Dia dos Namorados, minha vida 💖</h1>
+
+    <p>Desde que te conheci, tudo ficou mais bonito. Você é minha casa, meu porto seguro e minha canção favorita.</p>
+    <p>Te amo por tudo o que somos, pelo que construímos e por cada pequeno gesto de carinho entre nós.</p>
+    
+    <div class="carousel">
+      <div class="carousel-images" id="carousel">
+        <img src="imagem1.jpg" alt="Casal 1" />
+        <img src="imagem2.jpg" alt="Casal 2" />
+        <img src="imagem3.jpg" alt="Casal 3" />
+        <img src="imagem4.jpg" alt="Casal 4" />
+        <img src="imagem5.jpg" alt="Casal 5" />
+        <img src="imagem6.jpg" alt="Casal 6" />
+        <img src="imagem7.jpg" alt="Casal 7" />
+        <img src="imagem8.jpg" alt="Casal 8" />
+      </div>
+    </div>
+
+    <div class="phrases">
+      <p>Você é o meu lugar favorito no mundo inteiro.</p>
+      <p>Amar você é como respirar... não posso parar.</p>
+      <p>De todos os sorrisos, o seu é o meu favorito.</p>
+    </div>
+
+    <audio id="romanticMusic" autoplay loop>
+      <source src="musica.mp3" type="audio/mpeg">
+      Seu navegador não suporta áudio.
+    </audio>
+
+    <div class="section">
+      <h2>Estamos juntos há:</h2>
+      <div id="timer"></div>
+    </div>
+  </div>
+
+  <script>
+    // Carrossel automático
+    let index = 0;
+    const carousel = document.getElementById("carousel");
+    const imageWidth = 900;
+    const totalImages = carousel.children.length;
+
+    setInterval(() => {
+      index = (index + 1) % totalImages;
+      carousel.style.transform = `translateX(-${index * imageWidth}px)`;
+    }, 3000);
+
+    // Contador de tempo de relacionamento
+    const startDate = new Date("2024-04-13T00:00:00");
+
+    function updateTimer() {
+      const now = new Date();
+      const diff = now - startDate;
+
+      const years = Math.floor(diff / (1000 * 60 * 60 * 24 * 365.25));
+      const days = Math.floor(diff / (1000 * 60 * 60 * 24)) % 365;
+      const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+      const minutes = Math.floor((diff / (1000 * 60)) % 60);
+      const seconds = Math.floor((diff / 1000) % 60);
+
+      document.getElementById("timer").innerHTML =
+        `${years > 0 ? years + ' ano(s), ' : ''}${days} dias, ${hours}h ${minutes}m ${seconds}s`;
+    }
+
+    setInterval(updateTimer, 1000);
+    updateTimer();
+  </script>
+</body>
+</html>
